@@ -1,6 +1,7 @@
 package com.bang.example.domain.posts;
 
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
@@ -20,6 +21,9 @@ public void 주문서비스의_추소이벤트(){
 
 // NoArgsConstructor : 기본 생성자 자동 추가 public Posts(){} 와 같은 경우
 
+// Getter 클래스 내 모든 필드의 Getter 메소드를 자동생성한다.
+
+@Getter
 @NoArgsConstructor
 @Entity
 public class Posts {
@@ -49,13 +53,8 @@ public class Posts {
         this.author=author;
     }
 
-
-    public String getTitle(){
-        this.title = "테스트 게시글";
-        return title;
-    }
-    public String getContent(){
-        this.content = "테스트 본문";
-        return content;
+    public void update(String title, String content){
+        this.title=title;
+        this.content=content;
     }
 }
