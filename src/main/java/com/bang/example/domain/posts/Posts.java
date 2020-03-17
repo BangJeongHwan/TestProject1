@@ -1,5 +1,6 @@
 package com.bang.example.domain.posts;
 
+import com.bang.example.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,7 @@ public void 주문서비스의_추소이벤트(){
 @Getter
 @NoArgsConstructor
 @Entity
-public class Posts {
+public class Posts extends BaseTimeEntity {
     // Id : 해당 테이블의 PK 필드를 의미
     // GeneratedValue : PK 생성 규칙을 의미, GenerationType.IDENTITY 로 auto_increment 처리
     @Id
