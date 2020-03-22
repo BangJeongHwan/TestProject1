@@ -11,7 +11,7 @@ import java.util.List;
 // Entity 클래스와 기본 Entity Repository는 함께 위치
 // 보통 Domain 패키지에서 함께 관리한다.
 
-public interface PostsRepository  extends JpaRepository<Posts,Long> {
+public interface PostsRepository  extends JpaRepository<Posts,Long>, PostsRepositoryCustom {
 
     // @Query
     // 규모가 있는 프로젝트의 경우에는 아래와 같이 사용하는 것은 한계가 있다.
