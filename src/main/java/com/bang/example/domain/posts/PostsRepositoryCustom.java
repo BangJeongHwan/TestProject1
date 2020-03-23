@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface PostsRepositoryCustom {
     List<Posts> findByNewId(long id);
+    List<Posts> findByTitle(String title);
 }

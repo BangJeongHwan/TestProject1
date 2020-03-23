@@ -13,7 +13,39 @@ var main = {
             _this.delete();
         });
 
+        $('#btn-find-title').on('click', function () {
+            _this.find_title();
+        });
     },
+
+    find_title : function(){
+        var data = {
+            title : $('#find-title').val()
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/posts/find',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function(data) {
+            $("#tbody").html("");
+            var tbodyHtml = '';
+            $.each(data, function(idx, val) {
+                tbodyHtml += '<tr>';
+                tbodyHtml += '<td>'+val.id+'</td>';
+                tbodyHtml += '<td><a href="/posts/update/'+val.id+'">'+val.title+'</a></td>';
+                tbodyHtml += '<td>'+val.author+'</td>';
+                tbodyHtml += '<td>'+val.modifiedDate+'</td>';
+                tbodyHtml += '</tr>';
+            });
+            $('#tbody').append(tbodyHtml);
+            alert(data.length+'건 조회에 성공했습니다.');
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    },
+
     save : function () {
        /*
        if(!validationContent()){

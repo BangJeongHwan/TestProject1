@@ -2,10 +2,8 @@ package com.bang.example.service.posts;
 
 import com.bang.example.domain.posts.Posts;
 import com.bang.example.domain.posts.PostsRepository;
-import com.bang.example.web.dto.PostsListResponseDto;
-import com.bang.example.web.dto.PostsResponseDto;
-import com.bang.example.web.dto.PostsSaveRequestDto;
-import com.bang.example.web.dto.PostsUpdateRequestDto;
+import com.bang.example.web.dto.*;
+import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -63,6 +61,13 @@ public class PostsService {
     public List<PostsListResponseDto> findAllDesc() {
         return postsRepository.findAllDesc().stream()
                 .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsFindRequestDto> findBytitleQuerydslDesc(String title) {
+        return postsRepository.findByTitle(title).stream()
+                .map(PostsFindRequestDto::new)
                 .collect(Collectors.toList());
     }
 }

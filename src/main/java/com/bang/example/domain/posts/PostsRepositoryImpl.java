@@ -18,4 +18,12 @@ public class PostsRepositoryImpl implements PostsRepositoryCustom{
                 .where(posts.id.eq(id))
                 .fetch();
     }
+
+    @Override
+    public List<Posts> findByTitle(String title){
+        return queryFactory.selectFrom(posts)
+                .where(posts.title.contains(title))
+                .orderBy(posts.id.desc())
+                .fetch();
+    }
 }

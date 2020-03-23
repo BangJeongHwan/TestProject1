@@ -1,11 +1,14 @@
 package com.bang.example.web;
 
 import com.bang.example.service.posts.PostsService;
+import com.bang.example.web.dto.PostsFindRequestDto;
 import com.bang.example.web.dto.PostsResponseDto;
 import com.bang.example.web.dto.PostsSaveRequestDto;
 import com.bang.example.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 // RequiredArgsConstructor
 // 선언된 모든 final 필드가 포함된 생성자를 생성해준다.
@@ -42,5 +45,11 @@ public class PostsApiController {
     @GetMapping("/api/v1/posts/{id}")
     public PostsResponseDto findById(@PathVariable Long id){
         return postsService.findById(id);
+    }
+
+    @PostMapping("/api/v1/posts/find")
+    public List<PostsFindRequestDto> findByTitle(@RequestBody PostsFindRequestDto requestDto){
+        System.out.println(postsService.findBytitleQuerydslDesc(requestDto.getTitle()).toString());
+        return postsService.findBytitleQuerydslDesc(requestDto.getTitle());
     }
 }
